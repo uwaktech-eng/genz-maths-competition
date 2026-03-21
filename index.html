@@ -7,20 +7,16 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['Outfit', 'sans-serif'],
-            body: ['Space Grotesk', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
-    }
+    // ---- GOOGLE SHEETS CONFIGURATION ----
+    // Replace YOUR_GOOGLE_SHEETS_ID with your actual Google Sheet ID
+    // Replace YOUR_GOOGLE_APPS_SCRIPT_URL with your Google Apps Script deployment URL
+    const GOOGLE_SHEETS_CONFIG = {
+      SHEET_ID: '1DX_q4v9TsMOh5rzAs_SnABov1NThDQjaYBGaXGHnq4M',
+      APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbycGqpKayrOsKWRzxMVsqe3irRva_psDSfNoItKA9wydqZPnwOhP6BnqpFeeydkrDja/exec'
+    };
+    // Example: https://script.google.com/macros/d/YOUR_SCRIPT_ID/usercontent
   </script>
   <style>
     @keyframes float {
@@ -227,36 +223,46 @@
     }
   </style>
   <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full">
-  <div id="app-wrapper" class="w-full h-full overflow-auto" style="background: #0a0a1a; color: #e2e8f0;"><!-- Toast Container -->
+  <div id="app-wrapper" class="w-full h-full overflow-auto" style="background: #0a0a1a; color: #e2e8f0;">
+   <!-- Toast Container -->
    <div id="toast-container" class="toast-container"></div><!-- Floating Math Symbols Background -->
-   <div id="math-particles" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;"><span style="position:absolute;top:10%;left:8%;font-size:48px;opacity:0.06;color:#8b5cf6;" class="animate-float font-mono">∑</span> <span style="position:absolute;top:25%;right:12%;font-size:36px;opacity:0.06;color:#3b82f6;" class="animate-float-reverse font-mono">π</span> <span style="position:absolute;top:50%;left:5%;font-size:42px;opacity:0.05;color:#06b6d4;" class="animate-float font-mono">∞</span> <span style="position:absolute;top:70%;right:8%;font-size:38px;opacity:0.06;color:#8b5cf6;" class="animate-float-reverse font-mono">∫</span> <span style="position:absolute;top:15%;left:45%;font-size:32px;opacity:0.05;color:#a78bfa;" class="animate-float font-mono">Δ</span> <span style="position:absolute;top:85%;left:25%;font-size:44px;opacity:0.04;color:#3b82f6;" class="animate-float-reverse font-mono">√</span> <span style="position:absolute;top:40%;right:25%;font-size:28px;opacity:0.05;color:#06b6d4;" class="animate-float font-mono">θ</span> <span style="position:absolute;top:60%;left:60%;font-size:36px;opacity:0.04;color:#8b5cf6;" class="animate-float-reverse font-mono">λ</span>
+   <div id="math-particles" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
+    <span style="position:absolute;top:10%;left:8%;font-size:48px;opacity:0.06;color:#8b5cf6;" class="animate-float font-mono">∑</span> <span style="position:absolute;top:25%;right:12%;font-size:36px;opacity:0.06;color:#3b82f6;" class="animate-float-reverse font-mono">π</span> <span style="position:absolute;top:50%;left:5%;font-size:42px;opacity:0.05;color:#06b6d4;" class="animate-float font-mono">∞</span> <span style="position:absolute;top:70%;right:8%;font-size:38px;opacity:0.06;color:#8b5cf6;" class="animate-float-reverse font-mono">∫</span> <span style="position:absolute;top:15%;left:45%;font-size:32px;opacity:0.05;color:#a78bfa;" class="animate-float font-mono">Δ</span> <span style="position:absolute;top:85%;left:25%;font-size:44px;opacity:0.04;color:#3b82f6;" class="animate-float-reverse font-mono">√</span> <span style="position:absolute;top:40%;right:25%;font-size:28px;opacity:0.05;color:#06b6d4;" class="animate-float font-mono">θ</span> <span style="position:absolute;top:60%;left:60%;font-size:36px;opacity:0.04;color:#8b5cf6;" class="animate-float-reverse font-mono">λ</span>
    </div><!-- Navigation -->
    <nav style="position:sticky;top:0;z-index:50;background:rgba(10,10,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,92,246,0.1);">
     <div style="max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;">
      <div style="display:flex;align-items:center;gap:8px;">
-      <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#8b5cf6,#3b82f6);display:flex;align-items:center;justify-content:center;"><span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:16px;color:white;">π</span>
+      <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#8b5cf6,#3b82f6);display:flex;align-items:center;justify-content:center;">
+       <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:16px;color:white;">π</span>
       </div><span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;background:linear-gradient(135deg,#c4b5fd,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">GZ Math</span>
      </div>
-     <div style="display:none;" class="md:flex gap-6" id="nav-links"><a href="#about" class="nav-link">About</a> <a href="#how-it-works" class="nav-link">How It Works</a> <a href="#register" class="nav-link">Register</a> <a href="#prizes" class="nav-link">Prizes</a> <a href="#contact" class="nav-link">Contact</a>
+     <div style="display:none;" class="md:flex gap-6" id="nav-links">
+      <a href="#about" class="nav-link">About</a> <a href="#how-it-works" class="nav-link">How It Works</a> <a href="#register" class="nav-link">Register</a> <a href="#prizes" class="nav-link">Prizes</a> <a href="#contact" class="nav-link">Contact</a>
      </div><button id="mobile-menu-btn" class="md:hidden" style="color:#c4b5fd;background:none;border:none;cursor:pointer;" aria-label="Toggle menu"> <i data-lucide="menu" style="width:24px;height:24px;"></i> </button>
     </div><!-- Mobile Menu -->
-    <div id="mobile-menu" style="display:none;padding:0 24px 16px;flex-direction:column;gap:12px;"><a href="#about" class="nav-link" onclick="closeMobileMenu()">About</a> <a href="#how-it-works" class="nav-link" onclick="closeMobileMenu()">How It Works</a> <a href="#register" class="nav-link" onclick="closeMobileMenu()">Register</a> <a href="#prizes" class="nav-link" onclick="closeMobileMenu()">Prizes</a> <a href="#contact" class="nav-link" onclick="closeMobileMenu()">Contact</a>
+    <div id="mobile-menu" style="display:none;padding:0 24px 16px;flex-direction:column;gap:12px;">
+     <a href="#about" class="nav-link" onclick="closeMobileMenu()">About</a> <a href="#how-it-works" class="nav-link" onclick="closeMobileMenu()">How It Works</a> <a href="#register" class="nav-link" onclick="closeMobileMenu()">Register</a> <a href="#prizes" class="nav-link" onclick="closeMobileMenu()">Prizes</a> <a href="#contact" class="nav-link" onclick="closeMobileMenu()">Contact</a>
     </div>
    </nav><!-- Hero Section -->
-   <header id="hero" style="position:relative;z-index:1;min-height:90%;display:flex;align-items:center;justify-content:center;padding:60px 24px;overflow:hidden;"><!-- Gradient Orbs -->
+   <header id="hero" style="position:relative;z-index:1;min-height:90%;display:flex;align-items:center;justify-content:center;padding:60px 24px;overflow:hidden;">
+    <!-- Gradient Orbs -->
     <div style="position:absolute;top:-20%;right:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.15),transparent 70%);filter:blur(60px);"></div>
     <div style="position:absolute;bottom:-20%;left:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.12),transparent 70%);filter:blur(60px);"></div>
-    <div style="max-width:900px;text-align:center;"><!-- Badge -->
-     <div class="animate-slide-up stagger-1" style="display:inline-flex;align-items:center;gap:8px;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);border-radius:50px;padding:8px 20px;margin-bottom:28px;"><span style="width:8px;height:8px;border-radius:50%;background:#10b981;display:inline-block;"></span> <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#c4b5fd;">Registration Open — Limited Spots</span>
+    <div style="max-width:900px;text-align:center;">
+     <!-- Badge -->
+     <div class="animate-slide-up stagger-1" style="display:inline-flex;align-items:center;gap:8px;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);border-radius:50px;padding:8px 20px;margin-bottom:28px;">
+      <span style="width:8px;height:8px;border-radius:50%;background:#10b981;display:inline-block;"></span> <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#c4b5fd;">Registration Open — Limited Spots</span>
      </div>
      <h1 id="hero-title" class="animate-slide-up stagger-2" style="font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(36px,7vw,80px);line-height:1.05;margin-bottom:20px;background:linear-gradient(135deg,#ffffff 0%,#c4b5fd 40%,#93c5fd 70%,#67e8f9 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Gen Z Math Competition 2026</h1>
      <p id="hero-subtitle" class="animate-slide-up stagger-3" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(16px,2.5vw,22px);color:rgba(203,213,225,0.8);max-width:600px;margin:0 auto 40px;line-height:1.6;">Show Your Skills. Compete. Win Big.</p><!-- Math formula decoration -->
      <div class="animate-slide-up stagger-3" style="font-family:'JetBrains Mono',monospace;font-size:14px;color:rgba(139,92,246,0.4);margin-bottom:32px;letter-spacing:2px;">
       E = mc² &nbsp;•&nbsp; a² + b² = c² &nbsp;•&nbsp; ∫f(x)dx
      </div>
-     <div class="animate-slide-up stagger-4" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;"><a href="#register" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;font-size:16px;text-decoration:none;"> <i data-lucide="rocket" style="width:18px;height:18px;"></i> Register Now </a> <a href="#payment" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;font-size:16px;text-decoration:none;"> <i data-lucide="credit-card" style="width:18px;height:18px;"></i> Pay Entry Fee </a>
+     <div class="animate-slide-up stagger-4" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="#register" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;font-size:16px;text-decoration:none;"> <i data-lucide="rocket" style="width:18px;height:18px;"></i> Register Now </a> <a href="#payment" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;font-size:16px;text-decoration:none;"> <i data-lucide="credit-card" style="width:18px;height:18px;"></i> Pay Entry Fee </a>
      </div><!-- Stats -->
      <div class="animate-slide-up stagger-5" style="display:flex;justify-content:center;gap:40px;margin-top:56px;flex-wrap:wrap;">
       <div style="text-align:center;">
@@ -288,7 +294,8 @@
    </header><!-- About Section -->
    <section id="about" style="position:relative;z-index:1;padding:80px 24px;" class="math-grid">
     <div style="max-width:1000px;margin:0 auto;">
-     <div style="text-align:center;margin-bottom:48px;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8b5cf6;text-transform:uppercase;letter-spacing:3px;">About</span>
+     <div style="text-align:center;margin-bottom:48px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8b5cf6;text-transform:uppercase;letter-spacing:3px;">About</span>
       <h2 id="about-heading" style="font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);margin-top:12px;color:#f1f5f9;">About the Competition</h2>
      </div>
      <div class="glass-card" style="border-radius:24px;padding:40px;position:relative;overflow:hidden;">
@@ -334,15 +341,18 @@
    </section><!-- How It Works -->
    <section id="how-it-works" style="position:relative;z-index:1;padding:80px 24px;">
     <div style="max-width:1000px;margin:0 auto;">
-     <div style="text-align:center;margin-bottom:56px;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#3b82f6;text-transform:uppercase;letter-spacing:3px;">Process</span>
+     <div style="text-align:center;margin-bottom:56px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#3b82f6;text-transform:uppercase;letter-spacing:3px;">Process</span>
       <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);margin-top:12px;color:#f1f5f9;">How It Works</h2>
      </div>
-     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;"><!-- Step 1 -->
+     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;">
+      <!-- Step 1 -->
       <div class="glass-card" style="border-radius:20px;padding:32px 24px;text-align:center;transition:transform 0.3s ease;" onmouseenter="this.style.transform='translateY(-8px)'" onmouseleave="this.style.transform='translateY(0)'">
        <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#8b5cf6,#6366f1);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Outfit',sans-serif;font-weight:800;font-size:24px;color:white;">
         1
        </div>
-       <div style="display:flex;justify-content:center;margin-bottom:16px;"><i data-lucide="user-plus" style="width:28px;height:28px;color:#8b5cf6;"></i>
+       <div style="display:flex;justify-content:center;margin-bottom:16px;">
+        <i data-lucide="user-plus" style="width:28px;height:28px;color:#8b5cf6;"></i>
        </div>
        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:#f1f5f9;margin-bottom:8px;">Register Online</h3>
        <p style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(148,163,184,0.7);line-height:1.6;">Fill in the registration form with your details below</p>
@@ -351,7 +361,8 @@
        <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Outfit',sans-serif;font-weight:800;font-size:24px;color:white;">
         2
        </div>
-       <div style="display:flex;justify-content:center;margin-bottom:16px;"><i data-lucide="credit-card" style="width:28px;height:28px;color:#3b82f6;"></i>
+       <div style="display:flex;justify-content:center;margin-bottom:16px;">
+        <i data-lucide="credit-card" style="width:28px;height:28px;color:#3b82f6;"></i>
        </div>
        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:#f1f5f9;margin-bottom:8px;">Pay Entry Fee</h3>
        <p style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(148,163,184,0.7);line-height:1.6;">Complete your payment securely through our payment portal</p>
@@ -360,7 +371,8 @@
        <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#06b6d4,#10b981);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Outfit',sans-serif;font-weight:800;font-size:24px;color:white;">
         3
        </div>
-       <div style="display:flex;justify-content:center;margin-bottom:16px;"><i data-lucide="check-circle" style="width:28px;height:28px;color:#06b6d4;"></i>
+       <div style="display:flex;justify-content:center;margin-bottom:16px;">
+        <i data-lucide="check-circle" style="width:28px;height:28px;color:#06b6d4;"></i>
        </div>
        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:#f1f5f9;margin-bottom:8px;">Get Confirmation</h3>
        <p style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(148,163,184,0.7);line-height:1.6;">Receive your competition details and preparation materials</p>
@@ -369,7 +381,8 @@
        <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#10b981,#84cc16);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Outfit',sans-serif;font-weight:800;font-size:24px;color:white;">
         4
        </div>
-       <div style="display:flex;justify-content:center;margin-bottom:16px;"><i data-lucide="trophy" style="width:28px;height:28px;color:#10b981;"></i>
+       <div style="display:flex;justify-content:center;margin-bottom:16px;">
+        <i data-lucide="trophy" style="width:28px;height:28px;color:#10b981;"></i>
        </div>
        <h3 style="font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:#f1f5f9;margin-bottom:8px;">Compete &amp; Win!</h3>
        <p style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:rgba(148,163,184,0.7);line-height:1.6;">Show up, solve problems, and claim amazing prizes</p>
@@ -379,21 +392,27 @@
    </section><!-- Registration Form -->
    <section id="register" style="position:relative;z-index:1;padding:80px 24px;" class="math-grid">
     <div style="max-width:640px;margin:0 auto;">
-     <div style="text-align:center;margin-bottom:48px;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#06b6d4;text-transform:uppercase;letter-spacing:3px;">Sign Up</span>
+     <div style="text-align:center;margin-bottom:48px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#06b6d4;text-transform:uppercase;letter-spacing:3px;">Sign Up</span>
       <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);margin-top:12px;color:#f1f5f9;">Register Now</h2>
       <p style="font-family:'Space Grotesk',sans-serif;font-size:15px;color:rgba(148,163,184,0.7);margin-top:8px;">Secure your spot in the competition</p>
      </div>
      <div class="glass-card" style="border-radius:24px;padding:40px;">
       <form id="registration-form" onsubmit="return false;" style="display:flex;flex-direction:column;gap:20px;">
-       <div><label for="full-name" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">Full Name</label> <input id="full-name" type="text" class="form-input" placeholder="Enter your full name" required>
+       <div>
+        <label for="full-name" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">Full Name</label> <input id="full-name" type="text" class="form-input" placeholder="Enter your full name" required>
        </div>
-       <div><label for="email" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">Email Address</label> <input id="email" type="email" class="form-input" placeholder="your.email@school.com" required>
+       <div>
+        <label for="email" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">Email Address</label> <input id="email" type="email" class="form-input" placeholder="your.email@school.com" required>
        </div>
-       <div><label for="phone" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">Phone Number</label> <input id="phone" type="tel" class="form-input" placeholder="+234 XXX XXX XXXX" required>
+       <div>
+        <label for="phone" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">Phone Number</label> <input id="phone" type="tel" class="form-input" placeholder="+234 XXX XXX XXXX" required>
        </div>
-       <div><label for="school" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">School Name</label> <input id="school" type="text" class="form-input" placeholder="Enter your school name" required>
+       <div>
+        <label for="school" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">School Name</label> <input id="school" type="text" class="form-input" placeholder="Enter your school name" required>
        </div>
-       <div><label for="age-class" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">Age / Class</label> <input id="age-class" type="text" class="form-input" placeholder="e.g. 15 / SS1" required>
+       <div>
+        <label for="age-class" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:#c4b5fd;display:block;margin-bottom:6px;">Age / Class</label> <input id="age-class" type="text" class="form-input" placeholder="e.g. 15 / SS1" required>
        </div><button id="submit-btn" type="submit" class="btn-primary" style="width:100%;font-size:16px;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;"> <i data-lucide="send" style="width:18px;height:18px;"></i> <span id="submit-btn-text">Submit Registration</span> </button>
       </form><!-- Inline success message -->
       <div id="form-success" style="display:none;text-align:center;padding:32px 0;">
@@ -408,7 +427,8 @@
    </section><!-- Payment Section -->
    <section id="payment" style="position:relative;z-index:1;padding:80px 24px;">
     <div style="max-width:640px;margin:0 auto;text-align:center;">
-     <div style="margin-bottom:48px;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#10b981;text-transform:uppercase;letter-spacing:3px;">Payment</span>
+     <div style="margin-bottom:48px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#10b981;text-transform:uppercase;letter-spacing:3px;">Payment</span>
       <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);margin-top:12px;color:#f1f5f9;">Pay Entry Fee</h2>
      </div>
      <div class="glass-card animate-pulse-glow" style="border-radius:24px;padding:48px 32px;position:relative;overflow:hidden;">
@@ -423,9 +443,11 @@
        One-time payment per participant
       </div><a id="payment-link" href="https://paystack.com/pay/genzmath2026" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;font-size:18px;padding:16px 40px;text-decoration:none;"> <i data-lucide="external-link" style="width:20px;height:20px;"></i> Click Here to Pay </a>
       <div style="margin-top:24px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-       <div style="display:flex;align-items:center;gap:6px;"><i data-lucide="shield-check" style="width:14px;height:14px;color:#10b981;"></i> <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:rgba(148,163,184,0.6);">Secure Payment</span>
+       <div style="display:flex;align-items:center;gap:6px;">
+        <i data-lucide="shield-check" style="width:14px;height:14px;color:#10b981;"></i> <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:rgba(148,163,184,0.6);">Secure Payment</span>
        </div>
-       <div style="display:flex;align-items:center;gap:6px;"><i data-lucide="lock" style="width:14px;height:14px;color:#10b981;"></i> <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:rgba(148,163,184,0.6);">SSL Encrypted</span>
+       <div style="display:flex;align-items:center;gap:6px;">
+        <i data-lucide="lock" style="width:14px;height:14px;color:#10b981;"></i> <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:rgba(148,163,184,0.6);">SSL Encrypted</span>
        </div>
       </div>
      </div>
@@ -433,10 +455,12 @@
    </section><!-- Prizes Section -->
    <section id="prizes" style="position:relative;z-index:1;padding:80px 24px;" class="math-grid">
     <div style="max-width:1000px;margin:0 auto;">
-     <div style="text-align:center;margin-bottom:56px;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#f59e0b;text-transform:uppercase;letter-spacing:3px;">Rewards</span>
+     <div style="text-align:center;margin-bottom:56px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#f59e0b;text-transform:uppercase;letter-spacing:3px;">Rewards</span>
       <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);margin-top:12px;color:#f1f5f9;">Amazing Prizes Await</h2>
      </div>
-     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;"><!-- 1st Place -->
+     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
+      <!-- 1st Place -->
       <div class="prize-card glass-card" style="border-radius:24px;padding:40px 28px;text-align:center;border:1px solid rgba(245,158,11,0.3);position:relative;">
        <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#f59e0b,#f97316);padding:4px 20px;border-radius:0 0 12px 12px;font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;color:white;text-transform:uppercase;letter-spacing:1px;">
         Champion
@@ -482,13 +506,15 @@
    </section><!-- Contact Section -->
    <section id="contact" style="position:relative;z-index:1;padding:80px 24px;">
     <div style="max-width:640px;margin:0 auto;text-align:center;">
-     <div style="margin-bottom:48px;"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ec4899;text-transform:uppercase;letter-spacing:3px;">Get In Touch</span>
+     <div style="margin-bottom:48px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ec4899;text-transform:uppercase;letter-spacing:3px;">Get In Touch</span>
       <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);margin-top:12px;color:#f1f5f9;">Contact Us</h2>
      </div>
      <div class="glass-card" style="border-radius:24px;padding:40px;">
       <div style="display:flex;flex-direction:column;gap:24px;">
        <div style="display:flex;align-items:center;gap:16px;justify-content:center;">
-        <div style="width:48px;height:48px;border-radius:14px;background:rgba(139,92,246,0.15);display:flex;align-items:center;justify-content:center;"><i data-lucide="mail" style="width:22px;height:22px;color:#8b5cf6;"></i>
+        <div style="width:48px;height:48px;border-radius:14px;background:rgba(139,92,246,0.15);display:flex;align-items:center;justify-content:center;">
+         <i data-lucide="mail" style="width:22px;height:22px;color:#8b5cf6;"></i>
         </div>
         <div style="text-align:left;">
          <div style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:rgba(148,163,184,0.7);">
@@ -500,7 +526,8 @@
         </div>
        </div>
        <div style="display:flex;align-items:center;gap:16px;justify-content:center;">
-        <div style="width:48px;height:48px;border-radius:14px;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;"><i data-lucide="phone" style="width:22px;height:22px;color:#3b82f6;"></i>
+        <div style="width:48px;height:48px;border-radius:14px;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;">
+         <i data-lucide="phone" style="width:22px;height:22px;color:#3b82f6;"></i>
         </div>
         <div style="text-align:left;">
          <div style="font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:rgba(148,163,184,0.7);">
@@ -517,13 +544,17 @@
         Follow Us
        </div>
        <div style="display:flex;justify-content:center;gap:12px;">
-        <div style="width:44px;height:44px;border-radius:12px;background:rgba(139,92,246,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(139,92,246,0.2);" onmouseenter="this.style.background='rgba(139,92,246,0.25)'" onmouseleave="this.style.background='rgba(139,92,246,0.12)'"><i data-lucide="twitter" style="width:18px;height:18px;color:#c4b5fd;"></i>
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(139,92,246,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(139,92,246,0.2);" onmouseenter="this.style.background='rgba(139,92,246,0.25)'" onmouseleave="this.style.background='rgba(139,92,246,0.12)'">
+         <i data-lucide="twitter" style="width:18px;height:18px;color:#c4b5fd;"></i>
         </div>
-        <div style="width:44px;height:44px;border-radius:12px;background:rgba(59,130,246,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(59,130,246,0.2);" onmouseenter="this.style.background='rgba(59,130,246,0.25)'" onmouseleave="this.style.background='rgba(59,130,246,0.12)'"><i data-lucide="facebook" style="width:18px;height:18px;color:#93c5fd;"></i>
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(59,130,246,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(59,130,246,0.2);" onmouseenter="this.style.background='rgba(59,130,246,0.25)'" onmouseleave="this.style.background='rgba(59,130,246,0.12)'">
+         <i data-lucide="facebook" style="width:18px;height:18px;color:#93c5fd;"></i>
         </div>
-        <div style="width:44px;height:44px;border-radius:12px;background:rgba(236,72,153,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(236,72,153,0.2);" onmouseenter="this.style.background='rgba(236,72,153,0.25)'" onmouseleave="this.style.background='rgba(236,72,153,0.12)'"><i data-lucide="instagram" style="width:18px;height:18px;color:#f9a8d4;"></i>
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(236,72,153,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(236,72,153,0.2);" onmouseenter="this.style.background='rgba(236,72,153,0.25)'" onmouseleave="this.style.background='rgba(236,72,153,0.12)'">
+         <i data-lucide="instagram" style="width:18px;height:18px;color:#f9a8d4;"></i>
         </div>
-        <div style="width:44px;height:44px;border-radius:12px;background:rgba(6,182,212,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(6,182,212,0.2);" onmouseenter="this.style.background='rgba(6,182,212,0.25)'" onmouseleave="this.style.background='rgba(6,182,212,0.12)'"><i data-lucide="linkedin" style="width:18px;height:18px;color:#67e8f9;"></i>
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(6,182,212,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;border:1px solid rgba(6,182,212,0.2);" onmouseenter="this.style.background='rgba(6,182,212,0.25)'" onmouseleave="this.style.background='rgba(6,182,212,0.12)'">
+         <i data-lucide="linkedin" style="width:18px;height:18px;color:#67e8f9;"></i>
         </div>
        </div>
       </div>
@@ -533,11 +564,13 @@
    <footer style="position:relative;z-index:1;padding:40px 24px;border-top:1px solid rgba(139,92,246,0.1);background:rgba(0,0,0,0.3);">
     <div style="max-width:1000px;margin:0 auto;text-align:center;">
      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;">
-      <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#8b5cf6,#3b82f6);display:flex;align-items:center;justify-content:center;"><span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;color:white;">π</span>
+      <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#8b5cf6,#3b82f6);display:flex;align-items:center;justify-content:center;">
+       <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;color:white;">π</span>
       </div><span style="font-family:'Outfit',sans-serif;font-weight:700;font-size:16px;color:rgba(203,213,225,0.6);">Gen Z Math Competition</span>
      </div>
      <p style="font-family:'Space Grotesk',sans-serif;font-size:13px;color:rgba(148,163,184,0.5);margin-bottom:12px;">© 2025 Gen Z Math Competition. All rights reserved.</p>
-     <div style="display:flex;justify-content:center;gap:24px;"><span style="font-family:'Space Grotesk',sans-serif;font-size:13px;color:rgba(139,92,246,0.5);cursor:pointer;transition:color 0.3s;" onmouseenter="this.style.color='rgba(139,92,246,0.8)'" onmouseleave="this.style.color='rgba(139,92,246,0.5)'">Terms &amp; Conditions</span> <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;color:rgba(139,92,246,0.5);cursor:pointer;transition:color 0.3s;" onmouseenter="this.style.color='rgba(139,92,246,0.8)'" onmouseleave="this.style.color='rgba(139,92,246,0.5)'">Privacy Policy</span>
+     <div style="display:flex;justify-content:center;gap:24px;">
+      <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;color:rgba(139,92,246,0.5);cursor:pointer;transition:color 0.3s;" onmouseenter="this.style.color='rgba(139,92,246,0.8)'" onmouseleave="this.style.color='rgba(139,92,246,0.5)'">Terms &amp; Conditions</span> <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;color:rgba(139,92,246,0.5);cursor:pointer;transition:color 0.3s;" onmouseenter="this.style.color='rgba(139,92,246,0.8)'" onmouseleave="this.style.color='rgba(139,92,246,0.5)'">Privacy Policy</span>
      </div>
     </div>
    </footer>
@@ -564,6 +597,29 @@
 
     let currentData = [];
     let isSubmitting = false;
+
+    // ---- Google Sheets Submission ----
+    async function submitToGoogleSheets(formData) {
+      try {
+        const response = await fetch(GOOGLE_SHEETS_CONFIG.APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            full_name: formData.full_name,
+            email: formData.email,
+            phone: formData.phone,
+            school_name: formData.school_name,
+            age_class: formData.age_class,
+            registered_at: formData.registered_at
+          })
+        });
+        return { success: true };
+      } catch (error) {
+        console.error('Google Sheets submission error:', error);
+        return { success: false, error: error.message };
+      }
+    }
 
     // ---- Toast System ----
     function showToast(message, type = 'info') {
@@ -608,31 +664,28 @@
         return;
       }
 
-      if (currentData.length >= 999) {
-        showToast('Maximum registration limit reached. Please contact us directly.', 'error');
-        return;
-      }
-
       isSubmitting = true;
       const btn = document.getElementById('submit-btn');
       const btnText = document.getElementById('submit-btn-text');
       btn.disabled = true;
       btnText.textContent = 'Submitting...';
 
-      const result = await window.dataSdk.create({
+      const formData = {
         full_name: fullName,
         email: email,
         phone: phone,
         school_name: school,
         age_class: ageClass,
         registered_at: new Date().toISOString()
-      });
+      };
+
+      const result = await submitToGoogleSheets(formData);
 
       isSubmitting = false;
       btn.disabled = false;
       btnText.textContent = 'Submit Registration';
 
-      if (result.isOk) {
+      if (result.success) {
         document.getElementById('registration-form').style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
         showToast('Registration successful! 🎉', 'success');
@@ -728,13 +781,11 @@
         console.error('Data SDK init failed');
       }
     })();
-
-    // Init Lucide Icons
     lucide.createIcons();
 
     // Show desktop nav links
     const navLinksEl = document.getElementById('nav-links');
     if (navLinksEl) navLinksEl.style.display = '';
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9df2bc0042817847',t:'MTc3Mzk4ODkyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dfaaa30a7bbc0a4',t:'MTc3NDA3MjA3Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
