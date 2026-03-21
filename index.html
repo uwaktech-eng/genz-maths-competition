@@ -1,180 +1,45 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en" style="height: 100%; width: 100%;">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gen Z Math Competition 2026</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            outfit: ['Outfit', 'sans-serif'],
-            mono: ['Space Mono', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(-3deg); }
-    }
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
-      50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.3); }
-    }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes countUp {
-      from { opacity: 0; transform: scale(0.5); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes neonFlicker {
-      0%, 100% { text-shadow: 0 0 10px rgba(0,255,136,0.8), 0 0 20px rgba(0,255,136,0.4); }
-      50% { text-shadow: 0 0 5px rgba(0,255,136,0.4), 0 0 10px rgba(0,255,136,0.2); }
-    }
-    .animate-float { animation: float 6s ease-in-out infinite; }
-    .animate-float-slow { animation: floatSlow 8s ease-in-out infinite; }
-    .animate-float-delay { animation: float 7s ease-in-out 1s infinite; }
-    .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-    .animate-slideUp { animation: slideUp 0.8s ease-out forwards; }
-    .animate-slideIn { animation: slideIn 0.6s ease-out forwards; }
-    .animate-gradient { 
-      background-size: 200% 200%;
-      animation: gradientShift 4s ease infinite; 
-    }
-    .animate-neon { animation: neonFlicker 2s ease-in-out infinite; }
-
-    .stagger-1 { animation-delay: 0.1s; opacity: 0; }
-    .stagger-2 { animation-delay: 0.2s; opacity: 0; }
-    .stagger-3 { animation-delay: 0.3s; opacity: 0; }
-    .stagger-4 { animation-delay: 0.4s; opacity: 0; }
-    .stagger-5 { animation-delay: 0.5s; opacity: 0; }
-
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #0f0a1a; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8b5cf6, #3b82f6); border-radius: 4px; }
-
-    .grid-pattern {
-      background-image: 
-        linear-gradient(rgba(139,92,246,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139,92,246,0.06) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-
-    .math-symbol {
-      position: absolute;
-      font-family: 'Space Mono', monospace;
-      color: rgba(139,92,246,0.12);
-      font-size: 1.5rem;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    .toast-enter { animation: slideUp 0.4s ease-out forwards; }
-    .toast-exit { animation: slideUp 0.3s ease-in reverse forwards; }
-
-    .neon-border {
-      position: relative;
-    }
-    .neon-border::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: inherit;
-      background: linear-gradient(135deg, #8b5cf6, #3b82f6, #00ff88, #8b5cf6);
-      background-size: 300% 300%;
-      animation: gradientShift 3s ease infinite;
-      z-index: -1;
-      opacity: 0.7;
-    }
-
-    .card-glow:hover {
-      box-shadow: 0 0 30px rgba(139, 92, 246, 0.2), 0 20px 40px rgba(0,0,0,0.3);
-    }
-
-    .reveal-section {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { height: 100%; scroll-behavior: smooth; }
+    body { height: 100%; background: #0a0614; color: #e2e8f0; font: 16px Outfit, sans-serif; }
+    #app-wrapper { min-height: 100%; display: flex; flex-direction: column; }
   </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full font-outfit" style="background: #0a0614; color: #e2e8f0;">
-  <div id="app-wrapper" class="w-full h-full overflow-auto">
-   <!-- Navigation -->
-   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(10,6,20,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(139,92,246,0.15);">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-     <div class="flex items-center gap-2">
-      <div class="w-9 h-9 rounded-lg flex items-center justify-center font-mono font-bold text-sm" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6);">
+ <body style="background: #0a0614; color: #e2e8f0; margin: 0; padding: 0; font-family: Outfit, sans-serif;">
+  <div id="app-wrapper" style="width: 100%; min-height: 100%;"><!-- Navigation -->
+   <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,6,20,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(139,92,246,0.15);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
+     <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); color: white;">
        π
-      </div><span class="font-bold text-lg hidden sm:block" style="color: #c4b5fd;">GZ Math</span>
+      </div><span style="font-weight: bold; font-size: 18px; color: #c4b5fd; display: none;" class="sm:inline">GZ Math</span>
      </div>
-     <div class="hidden md:flex items-center gap-6 text-sm font-medium">
-      <a href="#about" class="hover:text-violet-400 transition-colors">About</a> <a href="#how-it-works" class="hover:text-violet-400 transition-colors">How It Works</a> <a href="#register" class="hover:text-violet-400 transition-colors">Register</a> <a href="#testimonials" class="hover:text-violet-400 transition-colors">Testimonials</a> <a href="#prizes" class="hover:text-violet-400 transition-colors">Prizes</a> <a href="#contact" class="hover:text-violet-400 transition-colors">Contact</a>
-     </div><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"> <i data-lucide="menu" style="width:22px;height:22px;color:#c4b5fd;"></i> </button>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
-     <div class="flex flex-col gap-3 text-sm font-medium" style="border-top: 1px solid rgba(139,92,246,0.2); padding-top: 12px;">
-      <a href="#about" class="py-2 hover:text-violet-400 transition-colors mobile-nav-link">About</a> <a href="#how-it-works" class="py-2 hover:text-violet-400 transition-colors mobile-nav-link">How It Works</a> <a href="#register" class="py-2 hover:text-violet-400 transition-colors mobile-nav-link">Register</a> <a href="#testimonials" class="py-2 hover:text-violet-400 transition-colors mobile-nav-link">Testimonials</a> <a href="#prizes" class="py-2 hover:text-violet-400 transition-colors mobile-nav-link">Prizes</a> <a href="#contact" class="py-2 hover:text-violet-400 transition-colors mobile-nav-link">Contact</a>
-     </div>
+     <div style="display: none; gap: 24px; align-items: center; font-size: 14px; font-weight: 500;" class="md:flex"><a href="#about" style="color: #e2e8f0; text-decoration: none;">About</a> <a href="#how-it-works" style="color: #e2e8f0; text-decoration: none;">How It Works</a> <a href="#register" style="color: #e2e8f0; text-decoration: none;">Register</a> <a href="#prizes" style="color: #e2e8f0; text-decoration: none;">Prizes</a> <a href="#contact" style="color: #e2e8f0; text-decoration: none;">Contact</a>
+     </div><button id="mobile-menu-btn" style="display: block; padding: 8px; border-radius: 8px; background: transparent; border: none; cursor: pointer;" class="md:hidden"> <i data-lucide="menu" style="width: 22px; height: 22px; color: #c4b5fd;"></i> </button>
     </div>
    </nav><!-- Hero Section -->
-   <section id="hero" class="relative w-full overflow-hidden grid-pattern" style="min-height: 100%; display: flex; align-items: center;">
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
-     <div class="absolute top-10 left-10 w-72 h-72 rounded-full animate-float" style="background: radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);"></div>
-     <div class="absolute bottom-20 right-10 w-96 h-96 rounded-full animate-float-slow" style="background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%);"></div>
-     <div class="absolute top-1/3 right-1/4 w-48 h-48 rounded-full animate-float-delay" style="background: radial-gradient(circle, rgba(0,255,136,0.08), transparent 70%);"></div><span class="math-symbol animate-float" style="top:15%;left:8%;font-size:2.5rem;">∑</span> <span class="math-symbol animate-float-slow" style="top:25%;right:12%;font-size:2rem;">π</span> <span class="math-symbol animate-float-delay" style="top:60%;left:5%;font-size:1.8rem;">∫</span> <span class="math-symbol animate-float" style="top:70%;right:8%;font-size:2.2rem;">√</span> <span class="math-symbol animate-float-slow" style="top:40%;left:15%;font-size:1.5rem;">Δ</span> <span class="math-symbol animate-float-delay" style="bottom:15%;left:20%;font-size:2rem;">∞</span> <span class="math-symbol animate-float" style="top:20%;left:45%;font-size:1.8rem;">θ</span> <span class="math-symbol animate-float-slow" style="bottom:25%;right:25%;font-size:1.6rem;">λ</span>
-     <svg class="absolute animate-float" style="top:18%;right:20%;opacity:0.1;" width="80" height="80" viewbox="0 0 80 80"><polygon points="40,5 75,65 5,65" fill="none" stroke="#8b5cf6" stroke-width="2" />
-     </svg>
-     <svg class="absolute animate-float-slow" style="bottom:30%;left:12%;opacity:0.08;" width="60" height="60" viewbox="0 0 60 60"><rect x="5" y="5" width="50" height="50" fill="none" stroke="#3b82f6" stroke-width="2" transform="rotate(45 30 30)" />
-     </svg>
-     <svg class="absolute animate-float-delay" style="top:50%;right:5%;opacity:0.1;" width="70" height="70" viewbox="0 0 70 70"><circle cx="35" cy="35" r="30" fill="none" stroke="#00ff88" stroke-width="1.5" /> <line x1="5" y1="35" x2="65" y2="35" stroke="#00ff88" stroke-width="1" opacity="0.5" /> <line x1="35" y1="5" x2="35" y2="65" stroke="#00ff88" stroke-width="1" opacity="0.5" />
-     </svg>
-    </div>
-    <div class="relative z-10 max-w-5xl mx-auto px-4 py-32 md:py-40 text-center">
-     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-8 animate-slideUp stagger-1" style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); color: #c4b5fd;">
-      <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Registration Open — Limited Spots!
+   <section id="hero" class="relative w-full overflow-hidden" style="min-height: 100%; display: flex; align-items: center; background: linear-gradient(135deg, #0a0614 0%, #1a0f3a 100%);">
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-32 md:py-40 text-center w-full">
+     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-8 animate-slideUp stagger-1" style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); color: #c4b5fd;"><span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Registration Open — Limited Spots!
      </div>
-     <h1 id="hero-title" class="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-6 animate-slideUp stagger-2" style="background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 40%, #8b5cf6 60%, #3b82f6 80%, #00ff88 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: slideUp 0.8s ease-out 0.2s forwards, gradientShift 5s ease infinite; opacity:0;">Gen Z Math Competition 2026</h1>
+     <h1 id="hero-title" class="text-4xl sm:text-5xl md:text-6xl font-black leading-tight mb-6 animate-slideUp stagger-2" style="color: #ffffff;">Gen Z Math Competition 2026</h1>
      <p id="hero-subtitle" class="text-lg sm:text-xl md:text-2xl font-light mb-10 max-w-2xl mx-auto animate-slideUp stagger-3" style="color: rgba(226,232,240,0.8);">Show Your Skills. Compete. Win Big.</p>
-     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slideUp stagger-4">
-      <a href="#register" class="group relative px-8 py-4 rounded-xl font-bold text-white text-lg overflow-hidden transition-all duration-300 hover:scale-105 animate-pulse-glow" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);"> <span class="relative z-10 flex items-center gap-2"> <i data-lucide="pen-tool" style="width:20px;height:20px;"></i> Register Now </span>
-       <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity" style="background: linear-gradient(135deg, #7c3aed, #4f46e5);"></div></a> <a href="#payment" class="group px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105" style="background: rgba(255,255,255,0.05); border: 2px solid rgba(139,92,246,0.4); color: #c4b5fd;"> <span class="flex items-center gap-2"> <i data-lucide="credit-card" style="width:20px;height:20px;"></i> Pay Entry Fee </span> </a>
+     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slideUp stagger-4"><a href="#register" class="px-8 py-4 rounded-xl font-bold text-white text-lg transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);"> <span class="flex items-center gap-2"> <i data-lucide="pen-tool" style="width:20px;height:20px;"></i> Register Now </span></a> <a href="#payment" class="px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105" style="background: rgba(255,255,255,0.05); border: 2px solid rgba(139,92,246,0.4); color: #c4b5fd;"> <span class="flex items-center gap-2"> <i data-lucide="credit-card" style="width:20px;height:20px;"></i> Pay Entry Fee </span> </a>
      </div>
      <div class="grid grid-cols-3 gap-4 sm:gap-8 mt-16 max-w-lg mx-auto animate-slideUp stagger-5">
       <div class="text-center">
-       <div class="text-2xl sm:text-3xl font-black animate-neon" style="color: #00ff88;">
+       <div class="text-2xl sm:text-3xl font-black" style="color: #00ff88;">
         500+
        </div>
        <div class="text-xs sm:text-sm mt-1" style="color: rgba(226,232,240,0.5);">
@@ -199,73 +64,40 @@
       </div>
      </div>
     </div>
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
-     <span class="text-xs font-medium" style="color: rgba(226,232,240,0.4);">Scroll</span> <i data-lucide="chevron-down" style="width:20px;height:20px;color:rgba(139,92,246,0.5);"></i>
-    </div>
    </section><!-- About Section -->
-   <section id="about" class="relative w-full py-20 md:py-28 grid-pattern reveal-section">
+   <section id="about" class="relative w-full py-20 md:py-28 reveal-section" style="background: linear-gradient(135deg, #0a0614 0%, #1a0f3a 50%, #0a0614 100%);">
     <div class="max-w-5xl mx-auto px-4">
      <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="relative">
-       <div class="rounded-2xl p-8 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(59,130,246,0.1)); border: 1px solid rgba(139,92,246,0.2);">
-        <svg viewbox="0 0 300 200" class="w-full" style="filter: drop-shadow(0 0 20px rgba(139,92,246,0.3));">
-         <defs>
-          <pattern id="smallGrid" width="30" height="20" patternunits="userSpaceOnUse">
-           <path d="M 30 0 L 0 0 0 20" fill="none" stroke="rgba(139,92,246,0.1)" stroke-width="0.5" />
-          </pattern>
-         </defs> <rect width="300" height="200" fill="url(#smallGrid)" /> <line x1="30" y1="170" x2="280" y2="170" stroke="rgba(226,232,240,0.3)" stroke-width="1" /> <line x1="30" y1="20" x2="30" y2="170" stroke="rgba(226,232,240,0.3)" stroke-width="1" /> <path d="M 30 170 Q 80 165 120 140 T 200 60 Q 230 25 270 20" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round">
-          <animate attributename="stroke-dasharray" from="0 500" to="500 0" dur="2s" fill="freeze" />
-         </path> <circle cx="80" cy="158" r="4" fill="#00ff88">
-          <animate attributename="opacity" values="0;1" dur="0.3s" begin="0.8s" fill="freeze" />
-         </circle> <circle cx="140" cy="120" r="4" fill="#00ff88">
-          <animate attributename="opacity" values="0;1" dur="0.3s" begin="1.2s" fill="freeze" />
-         </circle> <circle cx="200" cy="60" r="4" fill="#00ff88">
-          <animate attributename="opacity" values="0;1" dur="0.3s" begin="1.6s" fill="freeze" />
-         </circle> <circle cx="250" cy="28" r="4" fill="#00ff88">
-          <animate attributename="opacity" values="0;1" dur="0.3s" begin="2s" fill="freeze" />
-         </circle> <text x="150" y="195" text-anchor="middle" fill="rgba(226,232,240,0.4)" font-size="10" font-family="Space Mono">
-          f(x) = x²
-         </text>
-        </svg>
-        <div class="absolute top-4 right-4 px-3 py-1.5 rounded-lg text-xs font-mono animate-float" style="background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); color: #00ff88;">
-         E = mc²
-        </div>
-        <div class="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg text-xs font-mono animate-float-slow" style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); color: #c4b5fd;">
-         a² + b² = c²
-        </div>
+      <div class="rounded-2xl p-8 relative overflow-hidden" style="background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2);">
+       <div class="text-4xl mb-4">
+        📊
        </div>
+       <p class="text-sm" style="color: rgba(226,232,240,0.7);">Competing in the Gen Z Math Competition sharpens your problem-solving skills and opens doors to scholarships and recognition.</p>
       </div>
       <div>
-       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd;">
-        <i data-lucide="info" style="width:14px;height:14px;"></i> About
+       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd;"><i data-lucide="info" style="width:14px;height:14px;"></i> About
        </div>
        <h2 id="about-heading" class="text-3xl md:text-4xl font-extrabold mb-6" style="color: #f1f5f9;">About the Competition</h2>
        <p id="about-text" class="text-base md:text-lg leading-relaxed mb-6" style="color: rgba(226,232,240,0.7);">A nationwide math showdown designed for the sharpest young minds! The Gen Z Math Competition 2026 brings together Primary and Secondary school students in an electrifying battle of numbers, logic, and problem-solving.</p>
        <div class="space-y-3">
         <div class="flex items-start gap-3">
-         <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(139,92,246,0.2);">
-          <i data-lucide="users" style="width:16px;height:16px;color:#c4b5fd;"></i>
+         <div class="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(139,92,246,0.2);"><i data-lucide="check" style="width:14px;height:14px;color:#c4b5fd;"></i>
          </div>
          <div>
-          <span class="font-semibold text-sm" style="color: #e2e8f0;">Who Can Participate?</span>
           <p class="text-sm" style="color: rgba(226,232,240,0.6);">Primary &amp; Secondary school students (ages 8–18)</p>
          </div>
         </div>
         <div class="flex items-start gap-3">
-         <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(59,130,246,0.2);">
-          <i data-lucide="map-pin" style="width:16px;height:16px;color:#93c5fd;"></i>
+         <div class="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(59,130,246,0.2);"><i data-lucide="check" style="width:14px;height:14px;color:#93c5fd;"></i>
          </div>
          <div>
-          <span class="font-semibold text-sm" style="color: #e2e8f0;">Format</span>
           <p class="text-sm" style="color: rgba(226,232,240,0.6);">Online qualifying rounds → Grand Finale</p>
          </div>
         </div>
         <div class="flex items-start gap-3">
-         <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background: rgba(0,255,136,0.15);">
-          <i data-lucide="calendar" style="width:16px;height:16px;color:#00ff88;"></i>
+         <div class="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(0,255,136,0.15);"><i data-lucide="check" style="width:14px;height:14px;color:#00ff88;"></i>
          </div>
          <div>
-          <span class="font-semibold text-sm" style="color: #e2e8f0;">Date</span>
           <p class="text-sm" style="color: rgba(226,232,240,0.6);">March 15 – April 30, 2026</p>
          </div>
         </div>
@@ -277,8 +109,7 @@
    <section id="how-it-works" class="relative w-full py-20 md:py-28 reveal-section" style="background: linear-gradient(180deg, rgba(139,92,246,0.03), rgba(10,6,20,1));">
     <div class="max-w-5xl mx-auto px-4">
      <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); color: #c4b5fd;">
-       <i data-lucide="list-ordered" style="width:14px;height:14px;"></i> Process
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); color: #c4b5fd;"><i data-lucide="list-ordered" style="width:14px;height:14px;"></i> Process
       </div>
       <h2 class="text-3xl md:text-4xl font-extrabold" style="color: #f1f5f9;">How It Works</h2>
       <p class="text-base mt-3 max-w-md mx-auto" style="color: rgba(226,232,240,0.6);">Four simple steps to join the biggest math competition of the year</p>
@@ -291,12 +122,10 @@
         </div>
         <h3 class="font-bold text-lg mb-2" style="color: #e2e8f0;">Register Online</h3>
         <p class="text-sm" style="color: rgba(226,232,240,0.6);">Fill out the registration form with your details below</p>
-        <div class="mt-4">
-         <i data-lucide="clipboard-list" style="width:28px;height:28px;color:rgba(139,92,246,0.4);"></i>
+        <div class="mt-4"><i data-lucide="clipboard-list" style="width:28px;height:28px;color:rgba(139,92,246,0.4);"></i>
         </div>
        </div>
-       <div class="hidden lg:block absolute top-1/2 -right-3 z-10" style="color: rgba(139,92,246,0.3);">
-        <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+       <div class="hidden lg:block absolute top-1/2 -right-3 z-10" style="color: rgba(139,92,246,0.3);"><i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
        </div>
       </div>
       <div class="relative group">
@@ -306,12 +135,10 @@
         </div>
         <h3 class="font-bold text-lg mb-2" style="color: #e2e8f0;">Pay Entry Fee</h3>
         <p class="text-sm" style="color: rgba(226,232,240,0.6);">Make a quick and secure payment of ₦2,500</p>
-        <div class="mt-4">
-         <i data-lucide="wallet" style="width:28px;height:28px;color:rgba(59,130,246,0.4);"></i>
+        <div class="mt-4"><i data-lucide="wallet" style="width:28px;height:28px;color:rgba(59,130,246,0.4);"></i>
         </div>
        </div>
-       <div class="hidden lg:block absolute top-1/2 -right-3 z-10" style="color: rgba(59,130,246,0.3);">
-        <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+       <div class="hidden lg:block absolute top-1/2 -right-3 z-10" style="color: rgba(59,130,246,0.3);"><i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
        </div>
       </div>
       <div class="relative group">
@@ -321,12 +148,10 @@
         </div>
         <h3 class="font-bold text-lg mb-2" style="color: #e2e8f0;">Get Confirmed</h3>
         <p class="text-sm" style="color: rgba(226,232,240,0.6);">Receive a confirmation email with competition details</p>
-        <div class="mt-4">
-         <i data-lucide="mail-check" style="width:28px;height:28px;color:rgba(0,255,136,0.4);"></i>
+        <div class="mt-4"><i data-lucide="mail-check" style="width:28px;height:28px;color:rgba(0,255,136,0.4);"></i>
         </div>
        </div>
-       <div class="hidden lg:block absolute top-1/2 -right-3 z-10" style="color: rgba(0,255,136,0.3);">
-        <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+       <div class="hidden lg:block absolute top-1/2 -right-3 z-10" style="color: rgba(0,255,136,0.3);"><i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
        </div>
       </div>
       <div class="relative group">
@@ -336,8 +161,7 @@
         </div>
         <h3 class="font-bold text-lg mb-2" style="color: #e2e8f0;">Compete &amp; Win!</h3>
         <p class="text-sm" style="color: rgba(226,232,240,0.6);">Show up, solve problems, and claim your prizes</p>
-        <div class="mt-4">
-         <i data-lucide="trophy" style="width:28px;height:28px;color:rgba(245,158,11,0.4);"></i>
+        <div class="mt-4"><i data-lucide="trophy" style="width:28px;height:28px;color:rgba(245,158,11,0.4);"></i>
         </div>
        </div>
       </div>
@@ -347,72 +171,57 @@
    <section id="register" class="relative w-full py-20 md:py-28 grid-pattern reveal-section">
     <div class="max-w-3xl mx-auto px-4">
      <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(0,255,136,0.12); border: 1px solid rgba(0,255,136,0.25); color: #00ff88;">
-       <i data-lucide="pen-tool" style="width:14px;height:14px;"></i> Register
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(0,255,136,0.12); border: 1px solid rgba(0,255,136,0.25); color: #00ff88;"><i data-lucide="pen-tool" style="width:14px;height:14px;"></i> Register
       </div>
       <h2 class="text-3xl md:text-4xl font-extrabold" style="color: #f1f5f9;">Register Now</h2>
       <p class="text-base mt-3" style="color: rgba(226,232,240,0.6);">Fill in your details to secure your spot</p>
      </div>
      <div class="rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="background: rgba(139,92,246,0.05); border: 1px solid rgba(139,92,246,0.2);">
       <div class="absolute top-0 right-0 w-32 h-32 pointer-events-none" style="background: radial-gradient(circle at top right, rgba(139,92,246,0.1), transparent 70%);"></div>
-      <form id="registration-form" class="space-y-5 relative z-10">
-       <!-- Personal Information Section -->
+      <form id="registration-form" class="space-y-5 relative z-10"><!-- Personal Information Section -->
        <div class="pb-4" style="border-bottom: 1px solid rgba(139,92,246,0.1);">
         <p class="text-xs uppercase tracking-wider font-semibold mb-4" style="color: #8b5cf6;">Personal Information</p>
-        <div>
-         <label for="full_name" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Full Name *</label> <input type="text" id="full_name" name="full_name" required placeholder="e.g. Adaeze Okafor" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
+        <div><label for="full_name" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Full Name *</label> <input type="text" id="full_name" name="full_name" required placeholder="e.g. Adaeze Okafor" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-4">
-         <div>
-          <label for="age" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Age *</label> <input type="number" id="age" name="age" required min="8" max="25" placeholder="e.g. 15" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
+         <div><label for="age" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Age *</label> <input type="number" id="age" name="age" required min="8" max="25" placeholder="e.g. 15" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
          </div>
-         <div>
-          <label for="gender" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Gender *</label> <select id="gender" name="gender" required class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;"> <option value="">Select Gender</option> <option value="Male">Male</option> <option value="Female">Female</option> <option value="Other">Other</option> </select>
+         <div><label for="gender" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Gender *</label> <select id="gender" name="gender" required class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;"> <option value="">Select Gender</option> <option value="Male">Male</option> <option value="Female">Female</option> <option value="Other">Other</option> </select>
          </div>
         </div>
        </div><!-- Contact Information Section -->
        <div class="pb-4" style="border-bottom: 1px solid rgba(139,92,246,0.1);">
         <p class="text-xs uppercase tracking-wider font-semibold mb-4" style="color: #8b5cf6;">Contact Information</p>
-        <div>
-         <label for="email" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Email Address *</label> <input type="email" id="email" name="email" required placeholder="you@email.com" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
+        <div><label for="email" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Email Address *</label> <input type="email" id="email" name="email" required placeholder="you@email.com" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-4">
-         <div>
-          <label for="phone" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Your Phone Number *</label> <input type="tel" id="phone" name="phone" required placeholder="+234 800 123 4567" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
+         <div><label for="phone" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Your Phone Number *</label> <input type="tel" id="phone" name="phone" required placeholder="+234 800 123 4567" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
          </div>
-         <div>
-          <label for="parent_phone" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Parent/Guardian Phone *</label> <input type="tel" id="parent_phone" name="parent_phone" required placeholder="+234 800 987 6543" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
+         <div><label for="parent_phone" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Parent/Guardian Phone *</label> <input type="tel" id="parent_phone" name="parent_phone" required placeholder="+234 800 987 6543" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
          </div>
         </div>
        </div><!-- School Information Section -->
        <div class="pb-4" style="border-bottom: 1px solid rgba(139,92,246,0.1);">
         <p class="text-xs uppercase tracking-wider font-semibold mb-4" style="color: #8b5cf6;">School Information</p>
-        <div>
-         <label for="school_name" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">School Name *</label> <input type="text" id="school_name" name="school_name" required placeholder="e.g. Federal Government College" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
+        <div><label for="school_name" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">School Name *</label> <input type="text" id="school_name" name="school_name" required placeholder="e.g. Federal Government College" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-4">
-         <div>
-          <label for="state" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">State *</label> <input type="text" id="state" name="state" required placeholder="e.g. Lagos" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
+         <div><label for="state" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">State *</label> <input type="text" id="state" name="state" required placeholder="e.g. Lagos" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
          </div>
-         <div>
-          <label for="city_lga" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">City / LGA *</label> <input type="text" id="city_lga" name="city_lga" required placeholder="e.g. Ikeja" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
+         <div><label for="city_lga" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">City / LGA *</label> <input type="text" id="city_lga" name="city_lga" required placeholder="e.g. Ikeja" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
          </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-4">
-         <div>
-          <label for="class" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Class *</label> <input type="text" id="class" name="class" required placeholder="e.g. SS2, JSS1" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
+         <div><label for="class" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Class *</label> <input type="text" id="class" name="class" required placeholder="e.g. SS2, JSS1" class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;">
          </div>
-         <div>
-          <label for="category" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Category *</label> <select id="category" name="category" required class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;"> <option value="">Select Category</option> <option value="Primary">Primary</option> <option value="JSS">JSS (Junior Secondary)</option> <option value="SSS">SSS (Senior Secondary)</option> </select>
+         <div><label for="category" class="block text-sm font-semibold mb-2" style="color: #c4b5fd;">Category *</label> <select id="category" name="category" required class="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all duration-300 focus:ring-2 focus:ring-violet-500" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(139,92,246,0.2); color: #e2e8f0;"> <option value="">Select Category</option> <option value="Primary">Primary</option> <option value="JSS">JSS (Junior Secondary)</option> <option value="SSS">SSS (Senior Secondary)</option> </select>
          </div>
         </div>
        </div><!-- Agreement Section -->
-       <div class="pt-4">
-        <label for="agree_rules" class="flex items-start gap-3 cursor-pointer"> <input type="checkbox" id="agree_rules" name="agree_rules" required class="mt-1" style="width: 18px; height: 18px; accent-color: #8b5cf6;"> <span class="text-sm" style="color: rgba(226,232,240,0.7);">I agree that all information provided is correct and I accept the competition <a href="#competition-rules" style="color: #8b5cf6; text-decoration: underline;">terms, rules, and penalties</a> *</span> </label>
+       <div class="pt-4"><label for="agree_rules" class="flex items-start gap-3 cursor-pointer"> <input type="checkbox" id="agree_rules" name="agree_rules" required class="mt-1" style="width: 18px; height: 18px; accent-color: #8b5cf6;"> <span class="text-sm" style="color: rgba(226,232,240,0.7);">I agree that all information provided is correct and I accept the competition <a href="#competition-rules" style="color: #8b5cf6; text-decoration: underline;">terms, rules, and penalties</a> *</span> </label>
        </div><!-- Error/Success message area -->
        <div id="form-message" class="hidden rounded-xl px-4 py-3 text-sm font-medium"></div><button type="submit" id="submit-btn" class="w-full py-4 rounded-xl font-bold text-lg text-white transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);"> <span id="submit-text">Submit Registration</span> <span id="submit-spinner" class="hidden">
-         <svg class="animate-spin" style="width:20px;height:20px;" viewbox="0 0 24 24">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" opacity="0.3" /> <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" />
+         <svg class="animate-spin" style="width:20px;height:20px;" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" opacity="0.3" /> <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" />
          </svg></span> </button>
       </form>
       <p class="text-center text-xs mt-4 relative z-10" style="color: rgba(226,232,240,0.4);">Your data is stored securely in Google Sheets. We'll never share your info.</p>
@@ -422,13 +231,11 @@
    <section id="competition-rules" class="relative w-full py-20 md:py-28 reveal-section" style="background: linear-gradient(180deg, rgba(10,6,20,1), rgba(139,92,246,0.03));">
     <div class="max-w-4xl mx-auto px-4">
      <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5;">
-       <i data-lucide="alert-circle" style="width:14px;height:14px;"></i> Important
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5;"><i data-lucide="alert-circle" style="width:14px;height:14px;"></i> Important
       </div>
       <h2 id="rules-title" class="text-3xl md:text-4xl font-extrabold" style="color: #f1f5f9;">Competition Rules &amp; Penalties</h2>
      </div>
-     <div class="rounded-2xl p-8 space-y-6" style="background: rgba(139,92,246,0.05); border: 1px solid rgba(139,92,246,0.2);">
-      <!-- Rules -->
+     <div class="rounded-2xl p-8 space-y-6" style="background: rgba(139,92,246,0.05); border: 1px solid rgba(139,92,246,0.2);"><!-- Rules -->
       <div>
        <h3 class="text-lg font-bold mb-4" style="color: #c4b5fd;">📋 Competition Rules</h3>
        <ul class="space-y-3 text-sm" style="color: rgba(226,232,240,0.7);">
@@ -460,14 +267,12 @@
    <section id="testimonials" class="relative w-full py-20 md:py-28 grid-pattern reveal-section">
     <div class="max-w-5xl mx-auto px-4">
      <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd;">
-       <i data-lucide="star" style="width:14px;height:14px;"></i> Highlights
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd;"><i data-lucide="star" style="width:14px;height:14px;"></i> Highlights
       </div>
       <h2 id="testimonials-title" class="text-3xl md:text-4xl font-extrabold" style="color: #f1f5f9;">Past Competition Highlights</h2>
       <p class="text-base mt-3" style="color: rgba(226,232,240,0.6);">See what past participants experienced and achieved</p>
      </div>
-     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Testimonial 1 -->
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Testimonial 1 -->
       <div class="rounded-2xl overflow-hidden transition-all duration-500 card-glow" style="background: rgba(139,92,246,0.05); border: 1px solid rgba(139,92,246,0.15);">
        <div class="h-48 bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center font-black text-5xl" style="color: rgba(255,255,255,0.2);">
         📸
@@ -521,8 +326,7 @@
    </section><!-- Payment Section -->
    <section id="payment" class="relative w-full py-20 md:py-28 reveal-section" style="background: linear-gradient(180deg, rgba(10,6,20,1), rgba(139,92,246,0.05));">
     <div class="max-w-3xl mx-auto px-4 text-center">
-     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd;">
-      <i data-lucide="credit-card" style="width:14px;height:14px;"></i> Payment
+     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd;"><i data-lucide="credit-card" style="width:14px;height:14px;"></i> Payment
      </div>
      <h2 class="text-3xl md:text-4xl font-extrabold mb-4" style="color: #f1f5f9;">Pay Your Entry Fee</h2>
      <p class="text-base mb-10" style="color: rgba(226,232,240,0.6);">Secure your spot with a quick payment</p>
@@ -539,11 +343,9 @@
         One-time payment per participant
        </div><a id="pay-btn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg text-white transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #3b82f6, #2563eb);"> <i data-lucide="external-link" style="width:20px;height:20px;"></i> Click Here to Pay </a>
        <div class="flex items-center justify-center gap-4 mt-6">
-        <div class="flex items-center gap-1.5 text-xs" style="color: rgba(226,232,240,0.4);">
-         <i data-lucide="shield-check" style="width:14px;height:14px;color:#00ff88;"></i> Secure Payment
+        <div class="flex items-center gap-1.5 text-xs" style="color: rgba(226,232,240,0.4);"><i data-lucide="shield-check" style="width:14px;height:14px;color:#00ff88;"></i> Secure Payment
         </div>
-        <div class="flex items-center gap-1.5 text-xs" style="color: rgba(226,232,240,0.4);">
-         <i data-lucide="zap" style="width:14px;height:14px;color:#f59e0b;"></i> Instant Confirmation
+        <div class="flex items-center gap-1.5 text-xs" style="color: rgba(226,232,240,0.4);"><i data-lucide="zap" style="width:14px;height:14px;color:#f59e0b;"></i> Instant Confirmation
         </div>
        </div>
       </div>
@@ -554,14 +356,12 @@
    <section id="prizes" class="relative w-full py-20 md:py-28 grid-pattern reveal-section">
     <div class="max-w-5xl mx-auto px-4">
      <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: #fbbf24;">
-       <i data-lucide="trophy" style="width:14px;height:14px;"></i> Prizes
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: #fbbf24;"><i data-lucide="trophy" style="width:14px;height:14px;"></i> Prizes
       </div>
       <h2 class="text-3xl md:text-4xl font-extrabold" style="color: #f1f5f9;">Amazing Prizes Await</h2>
       <p class="text-base mt-3" style="color: rgba(226,232,240,0.6);">Over ₦1,000,000 in prizes across all categories</p>
      </div>
-     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- 1st Place -->
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6"><!-- 1st Place -->
       <div class="md:order-2 relative">
        <div class="rounded-2xl p-8 text-center h-full transition-all duration-500 card-glow relative overflow-hidden" style="background: linear-gradient(180deg, rgba(245,158,11,0.1), rgba(245,158,11,0.02)); border: 2px solid rgba(245,158,11,0.3);">
         <div class="absolute top-0 left-0 right-0 h-1" style="background: linear-gradient(90deg, #f59e0b, #fbbf24);"></div>
@@ -627,17 +427,14 @@
    <section id="contact" class="relative w-full py-20 md:py-28 reveal-section" style="background: linear-gradient(180deg, rgba(10,6,20,1), rgba(139,92,246,0.03));">
     <div class="max-w-4xl mx-auto px-4">
      <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); color: #c4b5fd;">
-       <i data-lucide="message-circle" style="width:14px;height:14px;"></i> Get in Touch
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); color: #c4b5fd;"><i data-lucide="message-circle" style="width:14px;height:14px;"></i> Get in Touch
       </div>
       <h2 class="text-3xl md:text-4xl font-extrabold" style="color: #f1f5f9;">Contact Us</h2>
       <p class="text-base mt-3" style="color: rgba(226,232,240,0.6);">Have questions? We'd love to hear from you</p>
      </div>
-     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-      <!-- Email -->
+     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6"><!-- Email -->
       <div class="rounded-2xl p-6 text-center transition-all duration-500 card-glow" style="background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.15);">
-       <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.1));">
-        <i data-lucide="mail" style="width:24px;height:24px;color:#c4b5fd;"></i>
+       <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.1));"><i data-lucide="mail" style="width:24px;height:24px;color:#c4b5fd;"></i>
        </div>
        <div class="font-semibold text-sm mb-1" style="color: #e2e8f0;">
         Email
@@ -647,8 +444,7 @@
        </div>
       </div><!-- Phone -->
       <div class="rounded-2xl p-6 text-center transition-all duration-500 card-glow" style="background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.15);">
-       <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(59,130,246,0.1));">
-        <i data-lucide="phone" style="width:24px;height:24px;color:#93c5fd;"></i>
+       <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(59,130,246,0.1));"><i data-lucide="phone" style="width:24px;height:24px;color:#93c5fd;"></i>
        </div>
        <div class="font-semibold text-sm mb-1" style="color: #e2e8f0;">
         Phone
@@ -658,16 +454,13 @@
        </div>
       </div><!-- Socials -->
       <div class="rounded-2xl p-6 text-center transition-all duration-500 card-glow" style="background: rgba(0,255,136,0.04); border: 1px solid rgba(0,255,136,0.12);">
-       <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,255,136,0.05));">
-        <i data-lucide="share-2" style="width:24px;height:24px;color:#00ff88;"></i>
+       <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,255,136,0.05));"><i data-lucide="share-2" style="width:24px;height:24px;color:#00ff88;"></i>
        </div>
        <div class="font-semibold text-sm mb-3" style="color: #e2e8f0;">
         Follow Us
        </div>
-       <div class="flex items-center justify-center gap-3">
-        <a id="whatsapp-link" href="https://wa.me/2348001234567" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.3);">
-         <svg width="18" height="18" viewbox="0 0 24 24" fill="#25d366">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+       <div class="flex items-center justify-center gap-3"><a id="whatsapp-link" href="https://wa.me/2348001234567" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.3);">
+         <svg width="18" height="18" viewbox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
          </svg></a> <a id="instagram-link" href="https://instagram.com/genzmathcomp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(225,48,108,0.15); border: 1px solid rgba(225,48,108,0.3);"> <i data-lucide="instagram" style="width:18px;height:18px;color:#e1306c;"></i> </a> <a href="https://twitter.com/genzmathcomp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(29,161,242,0.15); border: 1px solid rgba(29,161,242,0.3);"> <i data-lucide="twitter" style="width:18px;height:18px;color:#1da1f2;"></i> </a>
        </div>
       </div>
@@ -685,8 +478,7 @@
       <div class="text-xs text-center" style="color: rgba(226,232,240,0.4);">
        © 2026 Gen Z Math Competition. All rights reserved.
       </div>
-      <div class="flex items-center gap-4 text-xs" style="color: rgba(226,232,240,0.4);">
-       <a href="#" class="hover:text-violet-400 transition-colors">Terms &amp; Conditions</a> <span>·</span> <a href="#" class="hover:text-violet-400 transition-colors">Privacy Policy</a>
+      <div class="flex items-center gap-4 text-xs" style="color: rgba(226,232,240,0.4);"><a href="#" class="hover:text-violet-400 transition-colors">Terms &amp; Conditions</a> <span>·</span> <a href="#" class="hover:text-violet-400 transition-colors">Privacy Policy</a>
       </div>
      </div>
     </div>
@@ -694,250 +486,71 @@
   </div><!-- Toast container -->
   <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3" style="pointer-events: none;"></div>
   <script>
-    // ===================== CONFIG & DEFAULTS =====================
-    const defaultConfig = {
-      background_color: '#0a0614',
-      surface_color: '#1a1130',
-      text_color: '#e2e8f0',
-      primary_action_color: '#8b5cf6',
-      secondary_action_color: '#3b82f6',
-      font_family: 'Outfit',
-      font_size: 16,
-      hero_title: 'Gen Z Math Competition 2026',
-      hero_subtitle: 'Show Your Skills. Compete. Win Big.',
-      about_heading: 'About the Competition',
-      about_text: 'A nationwide math showdown designed for the sharpest young minds! The Gen Z Math Competition 2026 brings together Primary and Secondary school students in an electrifying battle of numbers, logic, and problem-solving.',
-      entry_fee: '₦2,500',
-      payment_link: 'https://selar.com/genz-maths-competition',
-      rules_title: 'Competition Rules & Penalties',
-      testimonials_title: 'Past Competition Highlights',
-      contact_email: 'hello@genzmathcomp.com',
-      contact_phone: '+234 800 123 4567',
-      whatsapp_link: 'https://wa.me/2348001234567',
-      instagram_link: 'https://instagram.com/genzmathcomp',
-      google_apps_script_url: 'https://script.google.com/macros/s/AKfycbycGqpKayrOsKWRzxMVsqe3irRva_psDSfNoItKA9wydqZPnwOhP6BnqpFeeydkrDja/exec'
-    };
+    lucide.createIcons();
 
-    // ===================== ELEMENT SDK =====================
-    let registrations = [];
-    let recordCount = 0;
-
-    window.elementSdk.init({
-      defaultConfig,
-      onConfigChange: async (config) => {
-        const c = (key) => config[key] || defaultConfig[key];
-        const fontStack = `${c('font_family')}, Outfit, sans-serif`;
-        const baseSize = c('font_size');
-
-        document.body.style.fontFamily = fontStack;
-        document.body.style.fontSize = `${baseSize}px`;
-        document.body.style.background = c('background_color');
-        document.body.style.color = c('text_color');
-
-        const heroTitle = document.getElementById('hero-title');
-        if (heroTitle) heroTitle.textContent = c('hero_title');
-        const heroSub = document.getElementById('hero-subtitle');
-        if (heroSub) heroSub.textContent = c('hero_subtitle');
-
-        const aboutH = document.getElementById('about-heading');
-        if (aboutH) aboutH.textContent = c('about_heading');
-        const aboutT = document.getElementById('about-text');
-        if (aboutT) aboutT.textContent = c('about_text');
-
-        const rulesT = document.getElementById('rules-title');
-        if (rulesT) rulesT.textContent = c('rules_title');
-        const testimonialsT = document.getElementById('testimonials-title');
-        if (testimonialsT) testimonialsT.textContent = c('testimonials_title');
-
-        const feeDisp = document.getElementById('fee-display');
-        if (feeDisp) feeDisp.textContent = c('entry_fee');
-
-        const payBtn = document.getElementById('pay-btn');
-        if (payBtn) payBtn.href = c('payment_link');
-
-        const emailDisp = document.getElementById('contact-email-display');
-        if (emailDisp) emailDisp.textContent = c('contact_email');
-        const phoneDisp = document.getElementById('contact-phone-display');
-        if (phoneDisp) phoneDisp.textContent = c('contact_phone');
-
-        const waLink = document.getElementById('whatsapp-link');
-        if (waLink) waLink.href = c('whatsapp_link');
-        const igLink = document.getElementById('instagram-link');
-        if (igLink) igLink.href = c('instagram_link');
-      },
-      mapToCapabilities: (config) => {
-        const c = (key) => config[key] || defaultConfig[key];
-        return {
-          recolorables: [
-            { get: () => c('background_color'), set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-            { get: () => c('surface_color'), set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-            { get: () => c('text_color'), set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-            { get: () => c('primary_action_color'), set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
-            { get: () => c('secondary_action_color'), set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
-          ],
-          borderables: [],
-          fontEditable: {
-            get: () => c('font_family'),
-            set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
-          },
-          fontSizeable: {
-            get: () => c('font_size'),
-            set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
-          }
-        };
-      },
-      mapToEditPanelValues: (config) => {
-        const c = (key) => config[key] || defaultConfig[key];
-        return new Map([
-          ['hero_title', c('hero_title')],
-          ['hero_subtitle', c('hero_subtitle')],
-          ['about_heading', c('about_heading')],
-          ['about_text', c('about_text')],
-          ['rules_title', c('rules_title')],
-          ['testimonials_title', c('testimonials_title')],
-          ['entry_fee', c('entry_fee')],
-          ['payment_link', c('payment_link')],
-          ['contact_email', c('contact_email')],
-          ['contact_phone', c('contact_phone')],
-          ['whatsapp_link', c('whatsapp_link')],
-          ['instagram_link', c('instagram_link')]
-        ]);
-      }
+    // Mobile menu
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    menuBtn.addEventListener('click', () => {
+      console.log('Menu clicked');
     });
 
-    // No Data SDK - using Google Apps Script instead
-
-    // ===================== FORM HANDLING =====================
+    // Form submission
     const form = document.getElementById('registration-form');
     const submitBtn = document.getElementById('submit-btn');
-    const submitText = document.getElementById('submit-text');
-    const submitSpinner = document.getElementById('submit-spinner');
     const formMessage = document.getElementById('form-message');
-
-    function showFormMessage(text, isError) {
-      formMessage.className = `rounded-xl px-4 py-3 text-sm font-medium`;
-      formMessage.style.background = isError ? 'rgba(239,68,68,0.15)' : 'rgba(0,255,136,0.1)';
-      formMessage.style.border = `1px solid ${isError ? 'rgba(239,68,68,0.3)' : 'rgba(0,255,136,0.3)'}`;
-      formMessage.style.color = isError ? '#fca5a5' : '#00ff88';
-      formMessage.textContent = text;
-      formMessage.classList.remove('hidden');
-      if (!isError) {
-        setTimeout(() => formMessage.classList.add('hidden'), 5000);
-      }
-    }
-
-    function setLoading(loading) {
-      submitBtn.disabled = loading;
-      submitBtn.style.opacity = loading ? '0.7' : '1';
-      submitText.textContent = loading ? 'Submitting...' : 'Submit Registration';
-      submitSpinner.classList.toggle('hidden', !loading);
-    }
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       if (!document.getElementById('agree_rules').checked) {
-        showFormMessage('Please agree to the competition rules and penalties', true);
+        formMessage.textContent = 'Please agree to the terms';
+        formMessage.style.background = 'rgba(239,68,68,0.15)';
+        formMessage.style.color = '#fca5a5';
+        formMessage.classList.remove('hidden');
         return;
       }
 
-      setLoading(true);
-      formMessage.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
 
       const data = {
-        full_name: document.getElementById('full_name').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        parent_phone: document.getElementById('parent_phone').value.trim(),
-        school_name: document.getElementById('school_name').value.trim(),
-        state: document.getElementById('state').value.trim(),
-        city_lga: document.getElementById('city_lga').value.trim(),
-        age: document.getElementById('age').value.trim(),
-        class: document.getElementById('class').value.trim(),
-        category: document.getElementById('category').value.trim(),
-        gender: document.getElementById('gender').value.trim(),
+        full_name: document.getElementById('full_name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        parent_phone: document.getElementById('parent_phone').value,
+        school_name: document.getElementById('school_name').value,
+        state: document.getElementById('state').value,
+        city_lga: document.getElementById('city_lga').value,
+        age: document.getElementById('age').value,
+        class: document.getElementById('class').value,
+        category: document.getElementById('category').value,
+        gender: document.getElementById('gender').value,
         timestamp: new Date().toLocaleString()
       };
 
       try {
-        const scriptUrl = window.elementSdk.config.google_apps_script_url || defaultConfig.google_apps_script_url;
-        
+        const scriptUrl = 'https://script.google.com/macros/d/YOUR_DEPLOYMENT_ID/usercontent';
         const response = await fetch(scriptUrl, {
           method: 'POST',
           mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
+          body: new URLSearchParams(data)
         });
 
-        setLoading(false);
-        showFormMessage('🎉 Registration successful! Check your email for confirmation.', false);
+        formMessage.textContent = '✓ Registration successful!';
+        formMessage.style.background = 'rgba(0,255,136,0.1)';
+        formMessage.style.color = '#00ff88';
+        formMessage.classList.remove('hidden');
         form.reset();
-        showToast('Registration submitted!', 'success');
       } catch (error) {
-        setLoading(false);
-        showFormMessage('Something went wrong. Please try again or contact support.', true);
-        console.error('Form submission error:', error);
+        formMessage.textContent = 'Error submitting form';
+        formMessage.style.background = 'rgba(239,68,68,0.15)';
+        formMessage.style.color = '#fca5a5';
+        formMessage.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Registration';
       }
     });
-
-    // ===================== TOAST NOTIFICATIONS =====================
-    function showToast(message, type) {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      toast.className = 'toast-enter';
-      toast.style.cssText = `
-        pointer-events: auto;
-        padding: 12px 20px;
-        border-radius: 12px;
-        font-size: 14px;
-        font-weight: 600;
-        background: ${type === 'success' ? 'rgba(0,255,136,0.15)' : 'rgba(239,68,68,0.15)'};
-        border: 1px solid ${type === 'success' ? 'rgba(0,255,136,0.3)' : 'rgba(239,68,68,0.3)'};
-        color: ${type === 'success' ? '#00ff88' : '#fca5a5'};
-        backdrop-filter: blur(20px);
-      `;
-      toast.textContent = message;
-      container.appendChild(toast);
-      setTimeout(() => {
-        toast.classList.remove('toast-enter');
-        toast.classList.add('toast-exit');
-        setTimeout(() => toast.remove(), 300);
-      }, 3000);
-    }
-
-    // ===================== MOBILE MENU =====================
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    let menuOpen = false;
-
-    menuBtn.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      mobileMenu.classList.toggle('hidden', !menuOpen);
-    });
-
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        menuOpen = false;
-        mobileMenu.classList.add('hidden');
-      });
-    });
-
-    // ===================== SCROLL REVEAL =====================
-    const revealSections = document.querySelectorAll('.reveal-section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    revealSections.forEach(section => observer.observe(section));
-
-    // ===================== INIT LUCIDE =====================
-    lucide.createIcons();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dfc987026583843',t:'MTc3NDA5MjMyMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dfcb8ee66253843',t:'MTc3NDA5MzY1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
